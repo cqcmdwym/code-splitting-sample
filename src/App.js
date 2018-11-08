@@ -8,10 +8,18 @@ import {
   Switch
 } from 'react-router-dom'
 
-import asyncComponent from './AsyncComponent';
+import Loadable from 'react-loadable';
+import MyLoadingComponent from './MyLoadingComponent';
 
-const AsyncHome = asyncComponent(() => import('./Home'));
-const AsyncPageOne = asyncComponent(() => import('./pageOne'));
+const AsyncHome = Loadable({
+  loader: ()=>import('./Home'),
+  loading: MyLoadingComponent
+});
+
+const AsyncPageOne = Loadable({
+  loader: () => import('./pageOne'),
+  loading: MyLoadingComponent
+});
 
 class App extends Component {
   render() {
